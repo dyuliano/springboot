@@ -34,8 +34,7 @@ public class VeiculoController {
 
     @PostMapping("")
     public Veiculo veiculo(@RequestBody Veiculo veiculo) {
-        return veiculo;
-        // return this.veiculoRepository.save(veiculo);
+        return this.veiculoRepository.save(veiculo);
     }
 
     @GetMapping("/list")
