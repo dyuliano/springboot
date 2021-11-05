@@ -1,7 +1,5 @@
 package br.com.springboot.model;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +30,7 @@ public class Veiculo {
     @NonNull
     private String modelo;
     @NonNull
-    private Date dataFabricação;
+    private String dataFabricação; // Ano/Modelo AAAA/AAAA
     private Double consumoMedioCidade;
     private Double consumoMedioRodovias;
 
