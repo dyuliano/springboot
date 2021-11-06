@@ -34,4 +34,13 @@ public class Veiculo {
     private Double consumoMedioCidade;
     private Double consumoMedioRodovias;
 
+    public Double QuantidadeCombustivelViagem(Double kmCidade, Double kmRodovia) {
+        return ((kmCidade / this.consumoMedioCidade) + (kmRodovia / this.consumoMedioRodovias));
+    }
+
+    public Double ValorCombustivelViagem(Double precoCombustivel, Double kmCidade, Double kmRodovia) {
+        return ((kmCidade / this.consumoMedioCidade * precoCombustivel)
+                + (kmRodovia / this.consumoMedioRodovias * precoCombustivel));
+    }
+
 }
