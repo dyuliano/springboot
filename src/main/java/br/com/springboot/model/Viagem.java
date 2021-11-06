@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustoViagem {
+public class Viagem {
     public Long IdVeiculo;
     public Double precoGasolina;
     public Double kmCidade;

@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.springboot.model.CustoViagem;
 import br.com.springboot.model.Veiculo;
+import br.com.springboot.model.Viagem;
 import br.com.springboot.repository.VeiculoRepository;
 
 @RestController
-@RequestMapping("/tools")
-public class ToolController {
+@RequestMapping("/viagem")
+public class ViagemController {
 
     @Autowired
     private VeiculoRepository veiculoRepository;
 
     @PostMapping("")
-    public String custoviagem(@RequestBody CustoViagem dadosViagem) {
+    public String custoviagem(@RequestBody Viagem dadosViagem) {
 
         Veiculo v1 = new Veiculo();
         Optional<Veiculo> meuVeiculo = this.veiculoRepository.findById(dadosViagem.IdVeiculo);
@@ -43,17 +43,17 @@ public class ToolController {
     }
 
     @PostMapping("/list")
-    public List<Veiculo> list(@RequestBody CustoViagem dadosViagem) {
+    public List<Veiculo> list(@RequestBody Viagem dadosViagem) {
         return this.veiculoRepository.findAll();
     }
 
     @PostMapping("/list/menorcusto")
-    public List<Veiculo> listmenor(@RequestBody CustoViagem dadosViagem) {
+    public List<Veiculo> listmenor(@RequestBody Viagem dadosViagem) {
         return this.veiculoRepository.findMenorCusto(dadosViagem.getPrecoGasolina());
     }
 
     @PostMapping("/list/maiorcusto")
-    public List<Veiculo> listmaior(@RequestBody CustoViagem dadosViagem) {
+    public List<Veiculo> listmaior(@RequestBody Viagem dadosViagem) {
         return this.veiculoRepository.findMaiorCusto(dadosViagem.getPrecoGasolina());
     }
 
