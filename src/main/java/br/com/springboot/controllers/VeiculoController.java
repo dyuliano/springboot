@@ -21,8 +21,14 @@ public class VeiculoController {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    @GetMapping("/{id}")
-    public Veiculo user(@PathVariable("id") Long id) {
+    @GetMapping("")
+    public String index() {
+        String msg = "API\nSpring Boot com Hibernate";
+        return msg;
+    }
+
+    @GetMapping("/buscar/{id}")
+    public Veiculo buscar(@PathVariable("id") Long id) {
         System.out.println(String.format("O id é: %s", id));
         Optional<Veiculo> veiculosFind = this.veiculoRepository.findById(id);
 
@@ -32,12 +38,12 @@ public class VeiculoController {
         return null;
     }
 
-    @PostMapping("")
+    @PostMapping("incluir")
     public Veiculo veiculo(@RequestBody Veiculo veiculo) {
         return this.veiculoRepository.save(veiculo);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listar")
     public List<Veiculo> list() {
         return this.veiculoRepository.findAll();
     }

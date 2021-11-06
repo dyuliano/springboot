@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,12 @@ public class ViagemController {
 
     @Autowired
     private VeiculoRepository veiculoRepository;
+
+    @GetMapping("")
+    public String index() {
+        String msg = "API\nSpring Boot com Hibernate";
+        return msg;
+    }
 
     @PostMapping("")
     public String custoviagem(@RequestBody Viagem dadosViagem) {
@@ -43,10 +50,10 @@ public class ViagemController {
                     (dadosViagem.kmCidade + dadosViagem.kmRodovia), dadosViagem.IdVeiculo);
         }
 
-        return String.format("Custo da sua viagem é R$ %1$,.2f", dadosViagem.CustoViagem());
+        return "Não foi encontrado o ID do veiculo";
     }
 
-    @PostMapping("/list")
+    @PostMapping("/listar")
     public List<VeiculoViagem> list(@RequestBody Viagem dadosViagem) {
 
         List veiculos = this.veiculoRepository.findAll();
@@ -73,12 +80,12 @@ public class ViagemController {
         return listaVeiculos;
     }
 
-    @PostMapping("/list/menorcusto")
+    @PostMapping("/listar/menorcusto")
     public List<Veiculo> listmenor(@RequestBody Viagem dadosViagem) {
         return this.veiculoRepository.findMenorCusto(dadosViagem.getPrecoGasolina());
     }
 
-    @PostMapping("/list/maiorcusto")
+    @PostMapping("/listar/maiorcusto")
     public List<Veiculo> listmaior(@RequestBody Viagem dadosViagem) {
         return this.veiculoRepository.findMaiorCusto(dadosViagem.getPrecoGasolina());
     }
